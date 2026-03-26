@@ -1,0 +1,122 @@
+/* eslint-disable */
+// @ts-nocheck
+export const idlFactory = ({ IDL }) => {
+  const Review = IDL.Record({
+    reviewer: IDL.Text,
+    rating: IDL.Float64,
+    comment: IDL.Text,
+    date: IDL.Text,
+  });
+  const Product = IDL.Record({
+    id: IDL.Text,
+    name: IDL.Text,
+    description: IDL.Text,
+    shortDescription: IDL.Text,
+    price: IDL.Float64,
+    discountPrice: IDL.Opt(IDL.Float64),
+    category: IDL.Text,
+    image: IDL.Text,
+    image2: IDL.Text,
+    image3: IDL.Text,
+    image4: IDL.Text,
+    featured: IDL.Bool,
+    newArrival: IDL.Bool,
+    isBestSeller: IDL.Bool,
+    sizes: IDL.Vec(IDL.Text),
+    colors: IDL.Vec(IDL.Text),
+    colorImages: IDL.Vec(IDL.Tuple(IDL.Text, IDL.Text)),
+    stock: IDL.Nat,
+    fabric: IDL.Text,
+    rating: IDL.Float64,
+    reviewCount: IDL.Nat,
+    soldCount: IDL.Nat,
+    deliveryThreshold: IDL.Nat,
+    returnDays: IDL.Nat,
+    reviews: IDL.Vec(Review),
+    keyHighlights: IDL.Vec(IDL.Text),
+    viewingCount: IDL.Nat,
+    trendingBadge: IDL.Bool,
+  });
+  const OrderItem = IDL.Record({
+    productName: IDL.Text,
+    size: IDL.Text,
+    qty: IDL.Nat,
+    price: IDL.Float64,
+  });
+  const Order = IDL.Record({
+    id: IDL.Text,
+    date: IDL.Text,
+    customerName: IDL.Text,
+    email: IDL.Text,
+    phone: IDL.Text,
+    address: IDL.Text,
+    city: IDL.Text,
+    postalCode: IDL.Text,
+    paymentMethod: IDL.Text,
+    items: IDL.Vec(OrderItem),
+    productTotal: IDL.Float64,
+    shippingFee: IDL.Float64,
+    grandTotal: IDL.Float64,
+    status: IDL.Text,
+    discountCode: IDL.Text,
+    discountAmount: IDL.Float64,
+  });
+  const Settings = IDL.Record({
+    storeName: IDL.Text,
+    whatsappNumber: IDL.Text,
+    easyPaisaNumber: IDL.Text,
+    contactEmail: IDL.Text,
+    deliveryFee: IDL.Float64,
+    freeShippingThreshold: IDL.Float64,
+    currency: IDL.Text,
+    heroImage: IDL.Text,
+    announcementCode: IDL.Text,
+    popupCode: IDL.Text,
+  });
+  const Discount = IDL.Record({
+    code: IDL.Text,
+    percent: IDL.Float64,
+    active: IDL.Bool,
+    usageCount: IDL.Nat,
+  });
+  const Contact = IDL.Record({
+    id: IDL.Text,
+    name: IDL.Text,
+    email: IDL.Text,
+    phone: IDL.Text,
+    message: IDL.Text,
+    date: IDL.Text,
+  });
+  const Subscriber = IDL.Record({
+    id: IDL.Text,
+    email: IDL.Text,
+    whatsapp: IDL.Text,
+    date: IDL.Text,
+  });
+  return IDL.Service({
+    getProducts: IDL.Func([], [IDL.Vec(Product)], ['query']),
+    addProduct: IDL.Func([Product], [IDL.Text], []),
+    updateProduct: IDL.Func([Product], [IDL.Bool], []),
+    deleteProduct: IDL.Func([IDL.Text], [IDL.Bool], []),
+    bulkImportProducts: IDL.Func([IDL.Vec(Product)], [IDL.Nat], []),
+    seedProducts: IDL.Func([IDL.Vec(Product)], [], []),
+    getOrders: IDL.Func([], [IDL.Vec(Order)], ['query']),
+    getOrderById: IDL.Func([IDL.Text], [IDL.Opt(Order)], ['query']),
+    addOrder: IDL.Func([Order], [IDL.Text], []),
+    updateOrderStatus: IDL.Func([IDL.Text, IDL.Text], [IDL.Bool], []),
+    getSettings: IDL.Func([], [Settings], ['query']),
+    saveSettings: IDL.Func([Settings], [IDL.Bool], []),
+    getDiscounts: IDL.Func([], [IDL.Vec(Discount)], ['query']),
+    addDiscount: IDL.Func([Discount], [IDL.Bool], []),
+    updateDiscount: IDL.Func([Discount], [IDL.Bool], []),
+    deleteDiscount: IDL.Func([IDL.Text], [IDL.Bool], []),
+    validateDiscount: IDL.Func([IDL.Text], [IDL.Opt(IDL.Float64)], ['query']),
+    getContacts: IDL.Func([], [IDL.Vec(Contact)], ['query']),
+    addContact: IDL.Func([Contact], [IDL.Text], []),
+    deleteContact: IDL.Func([IDL.Text], [IDL.Bool], []),
+    getSubscribers: IDL.Func([], [IDL.Vec(Subscriber)], ['query']),
+    addSubscriber: IDL.Func([Subscriber], [IDL.Text], []),
+    deleteSubscriber: IDL.Func([IDL.Text], [IDL.Bool], []),
+  });
+};
+export const init = ({ IDL }) => [];

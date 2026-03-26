@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0.98 0.008 75;
+    --foreground: 0.18 0.015 30;
+    --card: 1 0.003 75;
+    --card-foreground: 0.18 0.015 30;
+    --popover: 1 0.003 75;
+    --popover-foreground: 0.18 0.015 30;
+    --primary: 0.52 0.155 35;
+    --primary-foreground: 0.98 0.005 75;
+    --secondary: 0.92 0.018 75;
+    --secondary-foreground: 0.18 0.015 30;
+    --muted: 0.94 0.012 75;
+    --muted-foreground: 0.52 0.018 30;
+    --accent: 0.92 0.018 75;
+    --accent-foreground: 0.18 0.015 30;
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.005 75;
+    --border: 0.88 0.012 75;
+    --input: 0.88 0.012 75;
+    --ring: 0.52 0.155 35;
+    --radius: 0.25rem;
+    --chart-1: 0.52 0.155 35;
+    --chart-2: 0.65 0.12 55;
+    --chart-3: 0.75 0.1 75;
+    --chart-4: 0.42 0.13 270;
+    --chart-5: 0.62 0.15 180;
+    --sidebar: 0.98 0.008 75;
+    --sidebar-foreground: 0.18 0.015 30;
+    --sidebar-primary: 0.52 0.155 35;
+    --sidebar-primary-foreground: 0.98 0.005 75;
+    --sidebar-accent: 0.94 0.012 75;
+    --sidebar-accent-foreground: 0.18 0.015 30;
+    --sidebar-border: 0.88 0.012 75;
+    --sidebar-ring: 0.52 0.155 35;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    @apply border-border;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  html {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:opacity-90 transition-opacity px-6 py-3 font-sans font-semibold tracking-wide uppercase text-sm;
+  }
+
+  .category-pill {
+    @apply px-4 py-1.5 rounded-full text-sm font-sans font-medium border transition-all cursor-pointer;
+  }
+
+  .product-card-img {
+    @apply w-full h-48 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105;
+  }
+
+  .nav-link {
+    @apply text-sm font-sans font-medium tracking-widest uppercase text-foreground hover:text-foreground transition-colors opacity-70 hover:opacity-100;
+  }
+}
